@@ -96,7 +96,7 @@ module DatabaseAnonymizer
     end
 
     def general_asteriskize
-      fail DangerousRailsEnvError if Rails.env == 'production'
+      # fail DangerousRailsEnvError if Rails.env == 'production'
       model.unscoped.find_each { |instance| instance.update!(asteriskize_params(instance)) }
     end
 
