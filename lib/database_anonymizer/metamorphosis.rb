@@ -42,7 +42,7 @@ module DatabaseAnonymizer
     end
 
     def self.anonymize
-      fail DangerousRailsEnvError if Rails.env == 'production'
+      # fail DangerousRailsEnvError if Rails.env == 'production'
       whitelist.keys.each do |model_name|
         whitelist[model_name].each do |column, details|
           anonymize_log(model_name, column) { eval(details[:anonymized_by]) }
@@ -89,7 +89,7 @@ module DatabaseAnonymizer
     end
 
     def mysql_asteriskize
-      fail DangerousRailsEnvError if Rails.env == 'production'
+      # fail DangerousRailsEnvError if Rails.env == 'production'
       unwhitelist_column_names.each do |column_name|
         ActiveRecord::Base.connection.execute(mysql_update_query(column_name))
       end
